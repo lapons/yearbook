@@ -39,20 +39,20 @@ class ParticipantesDAO extends DAO {
 
         return $participantes;
     }
-    
-    public function pesqPorNome($nome){
+
+    public function pesqPorNome($nome) {
         $con = $this->getCon();
 
         $stmt = $con->prepare(
                 'SELECT * FROM participantes WHERE nomeCompleto like :nome');
-        $stmt->bindValue(':nome', '%'. $nome . '%');
+        $stmt->bindValue(':nome', '%' . $nome . '%');
         $stmt->execute();
         $participante = $this->processaResultado($stmt);
 
         return $participante;
     }
-    
-    public function pesqPorLogin($login){
+
+    public function pesqPorLogin($login) {
         $con = $this->getCon();
 
         $stmt = $con->prepare(
@@ -64,7 +64,7 @@ class ParticipantesDAO extends DAO {
         return $participante;
     }
 
-    public function alterar($participante){
+    public function alterar($participante) {
         $con = $this->getCon();
         $con->beginTransaction();
 
@@ -89,7 +89,7 @@ class ParticipantesDAO extends DAO {
             $con->rollBack();
         }
     }
-    
+
     private function processaResultado($statement) {
         $resultado = array();
 

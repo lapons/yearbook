@@ -1,39 +1,58 @@
 #titulo-01-header {
-	text-align: center;
-	color: #ffffff;
+    text-align: center;
+    color: #000000;
 }
 #titulo-02-header {
-	text-align: center;
-	color: #ffffff;
+    text-align: center;
+    color: #000000;
 }
 #titulo-03-header {
-	text-align: center;
-	color: #ffffff;
+    text-align: center;
+    color: #000000;
     font-size: 2em;
     text-align: center;
 }
+.erro-login {
+    background-color: #d13c46;
+    padding: 5px;
+    color: #ffffff;
+    border-radius: 0.3em;
+}
+#cadastro-home {
+    background-color: #eafdf1;
+    margin: 10px;
+    border: 1px solid #085626;
+}
+#btn-entrar {
+    float: right;
+    margin: 10px;
+}
 header {
-    background-color: #36648B;
-    border-bottom: 5px solid #003333;
-	height: auto;
-	min-height: 200px;
+    background-color: #c7cac7;
+    height: auto;
+    min-height: 200px;
+}
+#logo-puc {
+    width: 200px;
+    margin: 5px;
 }
 #bloco-msg-login {
     width: auto;
     color: #f6f8f9;
     padding: 5px;
+    text-align: right;
 }
 #bloco-msg-login p {
-    padding: 0 5px 0 0;
+    display: inline;
 }
 #bloco-msg-login a {
     padding: 2px 10px 2px 10px;
-    color: #b8e0ee;
+    color: #04471e;
     font-size: 1em;
     font-weight: bold;
 }
 #checkbox-lembrar-senha {
-	color: #ffffff;
+    color: #ffffff;
 }
 #apresentacao p {
     font-family: sans-serif;
@@ -47,7 +66,7 @@ p#titulo-lista-pessoas {
     color: #ffffff;
     padding: 5px;
     margin-top: 30px;
-	text-align: center;
+    text-align: center;
 }
 ul {
     list-style: none;
@@ -71,24 +90,20 @@ ul {
     color: #000000;
     font-weight: bold;
 }
-figcaption {
-    background-color: #e79c42;
+.pessoa a img{
+    width: 60%;
+    height: 60%;
+    margin: 10% 0 0 20%;
+    
 }
-.pessoa {
-    width: 120px;
-    height: 160px;
-    background-color: #003333;
-    margin: 20px;
-    float: left;
-}
-/* INÍCIO: Página de pesquisa */
+/* IN?CIO: P?gina de pesquisa */
 #lista-alunos {
     margin: 0 auto;
     color: #444748;
 }
 #lista-alunos li {
     min-height: 150px;
-	background-color: #FFFFE0;
+    background-color: #FFFFE0;
     font-family: arial serif;
     margin-bottom: 20px;	
 }
@@ -105,13 +120,16 @@ figcaption {
     color: #053241;
     font-weight: bold;
 }
+.titulo-pg-cadastro {
+    text-align: center;
+}
 #nome-pesquisa {
     text-decoration: none;
     color: #444748;
 }
-/* FIM: Página de pesquisa */
+/* FIM: P?gina de pesquisa */
 
-/* INÍCIO: Página pessoal */
+/* IN?CIO: P?gina pessoal */
 #aluno {
     background-color: #07647b;
     border-radius: 20px;
@@ -129,7 +147,7 @@ figcaption {
     display: inline-block;
     border-bottom: 1px solid #cccccc;
     padding-top: 10px;
-	color: #ffffff;
+    color: #ffffff;
 }
 .texto-informacoes {
     text-align: left;
@@ -137,6 +155,18 @@ figcaption {
     display: block;
     height: auto;
     width: auto;
-	color: #ffffff;
+    color: #ffffff;
 }
-/* FIM: Página pessoal */
+#form-login, #form-cadastro-pg-login {
+    background-color: #dcf9e6;
+    border: 1px solid #697876;
+    margin: 20px;
+}
+#form-login {
+    float: right;
+}
+#titulo-login, #titulo-cadastro {
+    color: #0c7e38;
+    text-align: center;
+}
+/* FIM: PÃ¡gina pessoal */

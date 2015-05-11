@@ -205,9 +205,8 @@ function alterar() {
     $participante->setDescricao($_POST['descricao']);
 
     $participanteDAO = new ParticipantesDAO();
-    
+
     $participanteDAO->alterar($participante);
     header('refresh: 0; url=funcoes.php?acao=pesquisa');
 }
 ?>
-

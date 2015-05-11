@@ -11,7 +11,7 @@ class EstadosDAO extends DAO {
         $stmt = $con->query(
                 'SELECT * FROM estados ORDER BY nomeEstado');
         $estados = $this->processaResultado($stmt);
-        
+
         return $estados;
     }
 
