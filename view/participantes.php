@@ -30,9 +30,8 @@ iniciaSessao();
 
             $participantes = $_SESSION['participantes'];
             $cidades = $_SESSION['cidades'];
+            $estados = $_SESSION['estados'];
             ?>
-
-
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <form action="funcoes.php?acao=pesquisa" method="post" id="form-pesquisa" role="form">
@@ -74,10 +73,13 @@ iniciaSessao();
                                                                 <dt class="titulo-informacoes-pesquisa">Nome</dt>
                                                                 <dd class=""><a href="pagina-pessoal.php?participante=<?php echo $participantes[$i]->getLogin(); ?>" id="nome-pesquisa"><?php echo $participantes[$i]->getNomeCompleto(); ?></a></dd>
                                                                 <dt class="titulo-informacoes-pesquisa">Cidade</dt>
-                                                                <dd class="">
-                                                                    <?php
-                                                                    echo $cidades[$i][0]->getNomeCidade();
-                                                                    ?></dd>
+                                                                <dd class=""><?php echo $cidades[$i][0]->getNomeCidade(); ?></dd>
+                                                                <dt class="titulo-informacoes-pesquisa">Estado</dt>
+                                                                <dd class=""><?php echo $estados[$i][0]->getNomeEstado(); ?></dd>
+                                                                <dt class="titulo-informacoes-pesquisa">E-mail</dt>
+                                                                <dd class=""><?php echo $participantes[$i]->getEmail(); ?></dd>
+                                                                <dt class="titulo-informacoes-pesquisa">Informações do aluno</dt>
+                                                                <dd class=""><?php echo $participantes[$i]->getDescricao(); ?></dd>
                                                             </dl>
                                                         </div>
                                                     </div>

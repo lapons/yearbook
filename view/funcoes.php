@@ -2,6 +2,7 @@
 
 require_once '../dao/ParticipantesDAO.php';
 require_once '../dao/CidadesDAO.php';
+require_once '../dao/EstadosDAO.php';
 
 if (isset($_GET['acao'])) {
     if ($_GET['acao'] == 'login') {
@@ -59,13 +60,17 @@ function pesquisa() {
     iniciaSessao();
     $participantesDAO = new ParticipantesDAO();
     $cidadesDAO = new CidadesDAO();
+    $estadosDAO = new EstadosDAO();
 
-    if (!isset($_POST['txt-pesquisa'])) { // pesquisa todos
+    if (strlen($_POST['txt-pesquisa']) == 0) { // pesquisa todos
         $participantes = $participantesDAO->pesqOrdemAlfabetica();
 
         $cidades = array();
+        $estados = array();
         foreach ($participantes as $participante) {
             $cidades[] = $cidadesDAO->getPorId($participante->getCidade());
+            $idEstado = $cidades[sizeof($cidades) - 1][0]->getIdEstado();
+            $estados[] = $estadosDAO->getPorId($idEstado);
         }
     } else { // pesquisa pelo nome desejado
         $nome = $_POST['txt-pesquisa'];
@@ -77,16 +82,20 @@ function pesquisa() {
         }
 
         $cidades = array();
+        $estados = array();
 
         if ($participantes != NULL) {
             foreach ($participantes as $participante) {
                 $cidades[] = $cidadesDAO->getPorId($participante->getCidade());
+                $idEstado = $cidades[sizeof($cidades) - 1][0]->getIdEstado();
+                $estados[] = $estadosDAO->getPorId($idEstado);
             }
         }
     }
 
     $_SESSION['participantes'] = $participantes;
     $_SESSION['cidades'] = $cidades;
+    $_SESSION['estados'] = $estados;
     header('refresh: 0; url=participantes.php');
 }
 
@@ -209,4 +218,5 @@ function alterar() {
     $participanteDAO->alterar($participante);
     header('refresh: 0; url=funcoes.php?acao=pesquisa');
 }
+
 ?>

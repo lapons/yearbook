@@ -15,6 +15,19 @@ class EstadosDAO extends DAO {
         return $estados;
     }
 
+    public function getPorId($idEstado) {
+        $con = $this->getCon();
+
+        $stmt = $con->prepare(
+                'SELECT * FROM estados WHERE idEstado = :idEstado');
+        $stmt->bindValue(':idEstado', $idEstado);
+        $stmt->execute();
+
+        $estado = $this->processaResultado($stmt);
+        
+        return $estado;
+    }
+    
     private function processaResultado($statement) {
         $resultado = array();
 
