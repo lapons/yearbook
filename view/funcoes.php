@@ -61,35 +61,31 @@ function pesquisa() {
     $participantesDAO = new ParticipantesDAO();
     $cidadesDAO = new CidadesDAO();
     $estadosDAO = new EstadosDAO();
+    $cidades = array();
+    $estados = array();
 
-    if (strlen($_POST['txt-pesquisa']) == 0) { // pesquisa todos
-        $participantes = $participantesDAO->pesqOrdemAlfabetica();
-
-        $cidades = array();
-        $estados = array();
-        foreach ($participantes as $participante) {
-            $cidades[] = $cidadesDAO->getPorId($participante->getCidade());
-            $idEstado = $cidades[sizeof($cidades) - 1][0]->getIdEstado();
-            $estados[] = $estadosDAO->getPorId($idEstado);
-        }
-    } else { // pesquisa pelo nome desejado
-        $nome = $_POST['txt-pesquisa'];
-
-        if ($nome == "" || $nome == NULL) { // não escreveu nada no campo de pesquisa (pesquisa todos)
+    if (isset($_POST['txt-pesquisa'])) {
+        if (strlen($_POST['txt-pesquisa']) == 0) { // pesquisa todos
             $participantes = $participantesDAO->pesqOrdemAlfabetica();
-        } else {
-            $participantes = $participantesDAO->pesqPorNome($nome);
-        }
 
-        $cidades = array();
-        $estados = array();
-
-        if ($participantes != NULL) {
             foreach ($participantes as $participante) {
                 $cidades[] = $cidadesDAO->getPorId($participante->getCidade());
                 $idEstado = $cidades[sizeof($cidades) - 1][0]->getIdEstado();
                 $estados[] = $estadosDAO->getPorId($idEstado);
             }
+        } else {
+            $nome = $_POST['txt-pesquisa'];
+            $participantes = $participantesDAO->pesqPorNome($nome);
+        }
+    } else { // clicou no link da página
+        $participantes = $participantesDAO->pesqOrdemAlfabetica();
+    }
+
+    if ($participantes != NULL) { // pesquisa as cidades e estados dos participantes encontrados na pesquisa
+        foreach ($participantes as $participante) {
+            $cidades[] = $cidadesDAO->getPorId($participante->getCidade());
+            $idEstado = $cidades[sizeof($cidades) - 1][0]->getIdEstado();
+            $estados[] = $estadosDAO->getPorId($idEstado);
         }
     }
 
@@ -195,7 +191,7 @@ function alterar() {
     $nova_senha = $_POST['nova-senha'];
     $repetir_nova_senha = $_POST['repetir-nova-senha'];
 
-    if ($_FILES['arquivoFoto']['error'] == 0) { // selecionou algum outra imagem
+    if ($_FILES['arquivoFoto']['error'] == 0) { // selecionou alguma outra imagem
         $nome_final = efetuaUploadFoto();
     } else { // não selecionou nenhuma imagem
         $nome_final = $participante->getArquivoFoto(); // pego a mesma imagem

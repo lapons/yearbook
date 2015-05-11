@@ -38,7 +38,7 @@ header {
 }
 #bloco-msg-login {
     width: auto;
-    color: #f6f8f9;
+    color: #ffffff;
     padding: 5px;
     text-align: right;
 }
@@ -96,7 +96,7 @@ ul {
     margin: 10% 0 0 20%;
     
 }
-/* IN?CIO: P?gina de pesquisa */
+/* INÍCIO: Página de pesquisa */
 #lista-alunos {
     margin: 0 auto;
     color: #444748;
@@ -120,16 +120,16 @@ ul {
     color: #053241;
     font-weight: bold;
 }
-.titulo-pg-cadastro {
+.titulo-padrao {
     text-align: center;
 }
 #nome-pesquisa {
     text-decoration: none;
     color: #444748;
 }
-/* FIM: P?gina de pesquisa */
+/* FIM: Página de pesquisa */
 
-/* IN?CIO: P?gina pessoal */
+/* INÍCIO: Página pessoal */
 #aluno {
     background-color: #07647b;
     border-radius: 20px;

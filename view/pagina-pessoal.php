@@ -16,55 +16,58 @@
         <![endif]-->
     </head>
     <body id="pagina-pessoal">
-        <?php
-        require_once './layout/header.php'; // inclui o header da página
-        require_once './layout/menu.php'; // inclui o menu da página
-
-        if (isset($_SESSION['login'])) { // verifica se está logado
-            require_once '../dao/ParticipantesDAO.php';
-            require_once '../dao/CidadesDAO.php';
-
-            $loginParticipante = $_GET['participante'];
-            $participanteDAO = new ParticipantesDAO();
-            $cidadeDAO = new CidadesDAO();
-
-            $participante = $participanteDAO->pesqPorLogin($loginParticipante);
-            $cidade = $cidadeDAO->getPorId($participante[0]->getCidade());
-            ?>
-            <div class="row">
-                <div class="col-md-12">
-                    <section id="aluno">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <figure>
-                                    <a href="#">
-                                        <img alt="<?php echo $participante[0]->getNomeCompleto(); ?>" id="foto-pg-pessoal" src="../img/fotos/<?php echo $participante[0]->getArquivoFoto(); ?>" />
-                                    </a>
-                                </figure>
-                            </div>
-                            <div class="col-md-9">
-                                <dl>
-                                    <dt class="titulo-informacoes">Nome</dt>
-                                    <dd class="texto-informacoes"><?php echo $participante[0]->getNomeCompleto(); ?></dd>
-                                    <dt class="titulo-informacoes">Cidade</dt>
-                                    <dd class="texto-informacoes"><?php echo $cidade[0]->getNomeCidade(); ?></dd>
-                                    <dt class="titulo-informacoes">E-mail</dt>
-                                    <dd class="texto-informacoes"><?php echo $participante[0]->getEmail(); ?></dd>
-                                    <dt class="titulo-informacoes">Descrição</dt>
-                                    <dd class="texto-informacoes"><?php echo $participante[0]->getDescricao(); ?></dd>
-                                </dl>
-                                <a href="funcoes.php?acao=pesquisa">
-                                    <button class="btn btn-primary" type="button">Voltar</button>
-                                </a>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
+        <div class="container-fluid">
             <?php
-        } else { // não está logado
-            header('refresh: 0; url=cadastro.php'); // redireciono para a página de cadastro
-        }
-        ?>
+            require_once './layout/header.php'; // inclui o header da página
+            require_once './layout/menu.php'; // inclui o menu da página
+
+            if (isset($_SESSION['login'])) { // verifica se está logado
+                require_once '../dao/ParticipantesDAO.php';
+                require_once '../dao/CidadesDAO.php';
+
+                $loginParticipante = $_GET['participante'];
+                $participanteDAO = new ParticipantesDAO();
+                $cidadeDAO = new CidadesDAO();
+
+                $participante = $participanteDAO->pesqPorLogin($loginParticipante);
+                $cidade = $cidadeDAO->getPorId($participante[0]->getCidade());
+                ?>
+            <h1 class="titulo-padrao">Página pessoal</h1>
+                <div class="row">
+                    <div class="col-md-12">
+                        <section id="aluno">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <figure>
+                                        <a href="#">
+                                            <img alt="<?php echo $participante[0]->getNomeCompleto(); ?>" id="foto-pg-pessoal" src="../img/fotos/<?php echo $participante[0]->getArquivoFoto(); ?>" />
+                                        </a>
+                                    </figure>
+                                </div>
+                                <div class="col-md-9">
+                                    <dl>
+                                        <dt class="titulo-informacoes">Nome</dt>
+                                        <dd class="texto-informacoes"><?php echo $participante[0]->getNomeCompleto(); ?></dd>
+                                        <dt class="titulo-informacoes">Cidade</dt>
+                                        <dd class="texto-informacoes"><?php echo $cidade[0]->getNomeCidade(); ?></dd>
+                                        <dt class="titulo-informacoes">E-mail</dt>
+                                        <dd class="texto-informacoes"><?php echo $participante[0]->getEmail(); ?></dd>
+                                        <dt class="titulo-informacoes">Descrição</dt>
+                                        <dd class="texto-informacoes"><?php echo $participante[0]->getDescricao(); ?></dd>
+                                    </dl>
+                                    <a href="funcoes.php?acao=pesquisa">
+                                        <button class="btn btn-primary" type="button">Voltar</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <?php
+            } else { // não está logado
+                header('refresh: 0; url=cadastro.php'); // redireciono para a página de cadastro
+            }
+            ?>
+        </div>
     </body>
 </html>

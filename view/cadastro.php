@@ -29,7 +29,6 @@ iniciaSessao();
         </script>
     </head>
     <body>
-
         <div class="container-fluid">
             <?php
             include_once '../dao/EstadosDAO.php';
@@ -45,11 +44,11 @@ iniciaSessao();
             ?>
             <div class="row">
 
-                <h1 class="titulo-pg-cadastro">Para ter acesso a todos os recursos do Yearbook cadastre-se.</h1>
+                <h1 class="titulo-padrao">Para ter acesso a todos os recursos do Yearbook cadastre-se.</h1>
 
                 <form class="col-lg-5" method="POST" action="funcoes.php?acao=cadastro" id="form-cadastro-pg-login" enctype="multipart/form-data">
                     <h3 id="titulo-cadastro">AINDA NÃO SOU CADASTRADO</h3>
-                    
+
                     <div class="form-group">
                         <label for="label-cadastro">Login</label>
                         <input type="text" name="login" required class="form-control" placeholder="Login">
@@ -90,7 +89,7 @@ iniciaSessao();
 
                 <form class="col-lg-6" method="POST" action="funcoes.php?acao=login" id="form-login" enctype="multipart/form-data">
                     <h3 id="titulo-login">JÁ SOU CADASTRADO</h3>
-                    
+
                     <?php
                     if (isset($_SESSION['erro-login'])) {
                         if ($_SESSION['erro-login'] == 1) {
@@ -116,7 +115,7 @@ iniciaSessao();
                     </div>
                     <input type="submit" value="Entrar" class="btn btn-success" />
                 </form>
-                </section>
             </div>
+        </div>
     </body>
 </html>

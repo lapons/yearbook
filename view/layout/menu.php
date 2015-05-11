@@ -12,8 +12,8 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Sobre o trabalho</a></li>
-                    <li><a href="#">Autor</a></li>
+                    <li><a href="sobre-trabalho.php">Sobre o trabalho</a></li>
+                    <li><a href="sobre-autor.php">Autor</a></li>
                     <?php if (isset($_SESSION['login'])) { ?>
                         <li><a href="funcoes.php?acao=pesquisa">Participantes</a></li>
                         <li><a href="meu-cadastro.php">Meu Cadastro</a></li>

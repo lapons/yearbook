@@ -50,64 +50,76 @@ iniciaSessao();
             $estados = $estadoDAO->getAllOrdemAlfabetica();
             ?>
 
-            <div class="row">
-                <div class="col-lg-5">
-                    <figure class="pessoa">
-                        <a href="#"><img alt="participantes" class="foto" src="../img/fotos/amigos.png" /></a>
-                    </figure>
+            <?php if (!isset($_SESSION['login'])) { // verificação de login ?>
+                <div class="row">
+                    <div class="col-lg-5">
+                        <figure class="pessoa">
+                            <a href="#"><img alt="participantes" class="foto" src="../img/fotos/amigos.png" /></a>
+                        </figure>
+                    </div>
+                    <div class="col-lg-6"  id="cadastro-home">
+                        <h2 class="titulo-padrao">Faça parte da nossa turma!</h2>
+                        <h1 class="titulo-padrao">Cadastre-se</h1>
+                        <form method="POST" action="funcoes.php?acao=cadastro" id="form-cadastro" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="label-cadastro">Login</label>
+                                <input type="text" name="login" required class="form-control" placeholder="Login">
+                            </div>
+                            <div class="form-group">
+                                <label for="label-cadastro">Senha</label>
+                                <input type="password" name="senha" required class="form-control" placeholder="Senha">
+                            </div>
+                            <div class="form-group">
+                                <label for="label-cadastro">Foto</label>
+                                <input type="file" name="arquivoFoto" required>
+                                <p class="help-block">Insira uma foto de resolução xxx/xxx</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="label-cadastro">Nome Completo</label>
+                                <input type="text" name="nomeCompleto" required class="form-control" placeholder="Nome Completo"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="label-cadastro">Estado</label>
+                                <select name="estado" id="estado" required class="form-control">
+                                    <option value=""></option>
+                                    <?php foreach ($estados as $estado) { ?>
+                                        <option value="<?php echo $estado->getIdEstado(); ?>"><?php echo $estado->getNomeEstado(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group" id="cidade"></div>
+                            <div class="form-group">
+                                <label for="label-cadastro">E-mail</label>
+                                <input type="email" name="email" required class="form-control" placeholder="E-mail"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="label-cadastro">Descrição</label>
+                                <textarea name="descricao" required class="form-control" placeholder="Descrição" ></textarea>
+                            </div>
+                            <input type="submit" value="Cadastrar" class="btn btn-success" />
+                        </form>
+                    </div>
                 </div>
-                <div class="col-lg-6"  id="cadastro-home">
-                    <h2 class="titulo-pg-cadastro">Faça parte da nossa turma!</h2>
-                    <h1 class="titulo-pg-cadastro">Cadastre-se</h1>
-                    <form method="POST" action="funcoes.php?acao=cadastro" id="form-cadastro" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="label-cadastro">Login</label>
-                            <input type="text" name="login" required class="form-control" placeholder="Login">
-                        </div>
-                        <div class="form-group">
-                            <label for="label-cadastro">Senha</label>
-                            <input type="password" name="senha" required class="form-control" placeholder="Senha">
-                        </div>
-                        <div class="form-group">
-                            <label for="label-cadastro">Foto</label>
-                            <input type="file" name="arquivoFoto" required>
-                            <p class="help-block">Insira uma foto de resolução xxx/xxx</p>
-                        </div>
-                        <div class="form-group">
-                            <label for="label-cadastro">Nome Completo</label>
-                            <input type="text" name="nomeCompleto" required class="form-control" placeholder="Nome Completo"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="label-cadastro">Estado</label>
-                            <select name="estado" id="estado" required class="form-control">
-                                <option value=""></option>
-                                <?php foreach ($estados as $estado) { ?>
-                                    <option value="<?php echo $estado->getIdEstado(); ?>"><?php echo $estado->getNomeEstado(); ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group" id="cidade"></div>
-                        <div class="form-group">
-                            <label for="label-cadastro">E-mail</label>
-                            <input type="email" name="email" required class="form-control" placeholder="E-mail"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="label-cadastro">Descrição</label>
-                            <textarea name="descricao" required class="form-control" placeholder="Descrição" ></textarea>
-                        </div>
-                        <input type="submit" value="Cadastrar" class="btn btn-success" />
-                    </form>
-                </div>
-            </div>
-            <?php
-            // Inclusão do footer na página
-            require_once 'layout/footer.php';
-            ?>
-        </div>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="../js/bootstrap.min.js"></script>
+                <?php
+                // Inclusão do footer na página
+                require_once 'layout/footer.php';
+                ?>
 
+                <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                <!-- Include all compiled plugins (below), or include individual files as needed -->
+                <script src="../js/bootstrap.min.js"></script>
+
+            <?php } else { // fim if de verificação de login ?>
+                <h1 class="titulo-padrao">Bem vindo ao yearbook.</h1>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <figure class="pessoa">
+                            <a href="#"><img alt="participantes" class="foto" src="../img/fotos/amigos.png" /></a>
+                        </figure>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
     </body>
 </html>
